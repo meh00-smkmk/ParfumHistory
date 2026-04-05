@@ -1,11 +1,14 @@
 {
+  "name": "perfumierpro-app",
+  "homepage": "https://meh00-smkmk.github.io/ParfumHistory",
   "scripts": {
     "preview": "vite preview",
     "build": "vite build",
     "test": "vitest",
-    "dev": "vite"
+    "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
-  "name": "perfumierpro-app",
   "devDependencies": {
     "@testing-library/react": "^14.1.0",
     "@vitejs/plugin-react": "^4.2.0",

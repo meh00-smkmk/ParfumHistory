@@ -7,12 +7,12 @@ export default function CustomerHistoryPage() {
 
   useEffect(() => {
     try {
-      const hash = window.location.hash
-      if (!hash || !hash.includes('#data=')) {
+      const search = window.location.search
+      if (!search || !search.includes('?data=')) {
         throw new Error("Aucune donnée trouvée. Veuillez scanner un QR code valide.")
       }
       
-      const b64Data = hash.split('#data=')[1]
+      const b64Data = search.split('?data=')[1]
       const decodedStr = atob(b64Data)
       const data = JSON.parse(decodedStr)
       

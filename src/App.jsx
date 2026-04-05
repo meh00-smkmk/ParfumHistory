@@ -90,6 +90,11 @@ function AppRouter() {
     )
   }
 
+  // QR Code route bypasses license and login completely
+  if (location.search.includes('?data=')) {
+    return <CustomerHistoryPage />
+  }
+
   // Not licensed
   if (!isLicensedApp) {
     return (
