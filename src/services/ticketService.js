@@ -299,7 +299,7 @@ export const printTicket = async (ticketType = 'receipt', data = {}) => {
       const minimalItems = data.items.map(i => ({ c: i.id || 0, n: encodeURIComponent(i.name), s: i.size || 0, q: i.quantity || 1 }));
       const payload = btoa(JSON.stringify(minimalItems));
       // In production, this links to your actual hosted URL
-      const qrUrl = "https://meh00-smkmk.github.io/ParfumHistory/#/history?data=" + payload;
+      const qrUrl = "https://meh00-smkmk.github.io/ParfumHistory/?data=" + payload;
       data.qrImageStr = await QRCode.toDataURL(qrUrl, { margin: 1, width: 130 });
     } catch (e) {
       console.error("QR Code Error:", e);

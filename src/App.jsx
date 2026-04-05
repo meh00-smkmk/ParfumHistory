@@ -18,7 +18,6 @@ import SettingsPage from './pages/SettingsPage'
 import RawMaterialsPage from './pages/RawMaterialsPage'
 import AdminPanel from './pages/AdminPanel'
 import SalesHistoryPage from './pages/SalesHistoryPage'
-import CustomerHistoryPage from './pages/CustomerHistoryPage'
 
 function App() {
   return (
@@ -90,11 +89,6 @@ function AppRouter() {
     )
   }
 
-  // QR Code route bypasses license and login completely
-  if (location.search.includes('?data=')) {
-    return <CustomerHistoryPage />
-  }
-
   // Not licensed
   if (!isLicensedApp) {
     return (
@@ -111,7 +105,6 @@ function AppRouter() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/history" element={<CustomerHistoryPage />} />
 
       <Route
         path="/*"
