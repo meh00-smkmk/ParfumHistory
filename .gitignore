@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env.local
+.env.*.local
+*.log
+.vscode/
+.DS_Store
+electron-builder-artifact-*
+out/
+.electron-vite
