@@ -17,6 +17,7 @@
     body { background-color: var(--color-background); color: var(--color-text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 2.5rem 1rem; }
     .ch-header { text-align: center; margin-bottom: 2.5rem; width: 100%; max-width: 450px; }
     #shop-name { color: var(--color-accent); margin: 0; font-size: 2.2rem; letter-spacing: 1px; font-weight: 700; }
+    #customer-name { color: #fff; margin-top: 0.5rem; font-size: 1.1rem; font-weight: 500; opacity: 0.9; }
     .ch-header p { color: #888; margin: 0.6rem 0 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 500; }
     .ch-main { width: 100%; max-width: 450px; }
     .ch-intro { background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.15); color: #c4a74d; padding: 1.2rem; border-radius: 12px; font-size: 0.95rem; text-align: center; margin-bottom: 2rem; line-height: 1.5; }
@@ -35,7 +36,8 @@
 <body>
   <header class="ch-header">
     <h1 id="shop-name">Votre Boutique</h1>
-    <p>Historique de Parfum</p>
+    <div id="customer-name">Historique Personnalisé</div>
+    <p>Scent History</p>
   </header>
 
   <main class="ch-main">
@@ -46,7 +48,7 @@
 
     <div id="content-container">
       <div class="ch-intro">
-        Voici la sélection de parfums de votre dernière visite. Présentez cet écran pour retrouver exactement vos mélanges !
+        Consultez la sélection de parfums de votre dernière visite. Présentez cet écran en boutique pour retrouver vos favoris !
       </div>
       <p id="loading">Chargement des parfums...</p>
       <div id="history-list" class="ch-list"></div>
@@ -58,6 +60,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const shopNameEl = document.getElementById('shop-name');
+      const customerNameEl = document.getElementById('customer-name');
       const errorContainer = document.getElementById('error-container');
       const errorMessage = document.getElementById('error-message');
       const contentContainer = document.getElementById('content-container');
@@ -72,7 +75,6 @@
 
       function safeDecode(str) {
         try {
-          // Add padding back
           str = str.replace(/-/g, '+').replace(/_/g, '/');
           while (str.length % 4) str += '=';
           return decodeURIComponent(escape(atob(str)));
@@ -95,9 +97,17 @@
         const data = JSON.parse(decodedStr);
         const items = data.items || [];
         const sn = data.sn ? decodeURIComponent(data.sn) : "Votre Boutique";
+        const cn = data.cn ? decodeURIComponent(data.cn) : "";
 
         document.title = "Historique chez " + sn;
         shopNameEl.textContent = sn;
+        
+        if (cn && cn !== 'Client Anonyme') {
+          customerNameEl.textContent = "Historique de " + cn;
+        } else {
+          customerNameEl.textContent = "Vos Parfums Préférés";
+        }
+
         loading.style.display = 'none';
 
         if (items.length === 0) {
