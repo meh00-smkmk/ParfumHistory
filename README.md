@@ -6,6 +6,8 @@
 [![CSS3](https://img.shields.io/badge/CSS3-styles-1572b6?logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-f7df1e?logo=javascript&logoColor=111)](https://developer.mozilla.org/docs/Web/JavaScript)
 
+![PerfumierPro customer history preview](docs/preview.png)
+
 ## The problem it solves
 
 Retail staff need a simple way to recover a returning customer’s purchase history without manually searching through receipts or a separate customer database.
